@@ -14,7 +14,7 @@ export default function Index({ locales }: IndexProps) {
       for (const locale of locales) {
         if (lang.startsWith(locale)) {
           const path = '/' + locale;
-          router.replace(path);
+          router.replace(path, path, { locale: locale });
           return;
         }
       }

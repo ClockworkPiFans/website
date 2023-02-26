@@ -8,7 +8,10 @@ export default function SwitchLanguage() {
   const { t } = useTranslation('common');
 
   const switchLanguage = (locale: string) => {
-    router.push(router.asPath, router.asPath, { locale: locale });
+    router.push(
+      router.asPath,
+      router.asPath.replace(router.query.locale as string, locale),
+      { locale: locale });
   };
 
   return (

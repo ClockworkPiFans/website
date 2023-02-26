@@ -13,6 +13,7 @@ import { BsJoystick } from 'react-icons/bs';
 import { MdSmartScreen } from 'react-icons/md';
 import SwitchLanguage from '@/components/SwitchLanguage';
 import { ReactElement } from 'react';
+import { useRouter } from 'next/router';
 
 interface MainLayoutProps {
   children: ReactElement;
@@ -20,41 +21,47 @@ interface MainLayoutProps {
 
 export default function MainLayout({ children }: MainLayoutProps) {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  function getLocaleLink(originalLink:string): string {
+    return `/${router.query.locale}${originalLink}`;
+  }
+
   const defaultLinks = [
     {
-      link: "/",
+      link: getLocaleLink("/"),
       label: t('home'),
       startIcon: <FaHome />
     },
     {
-      link: "/gameshell-ext",
+      link: getLocaleLink("/gameshell-ext"),
       label: t('gameshell-ext'),
       startIcon: <FaGamepad />,
       links: [
         {
-          link: "/gameshell-ext/screen",
+          link: getLocaleLink("/gameshell-ext/screen"),
           label: t('screen'),
           startIcon: <MdSmartScreen />
         },
         {
-          link: "/gameshell-ext/joypad",
+          link: getLocaleLink("/gameshell-ext/joypad"),
           label: t('joypad'),
           startIcon: <BsJoystick />
         }
       ]
     },
     {
-      link: "/manual",
+      link: getLocaleLink("/manual"),
       label: t('manual'),
       startIcon: <FaBook />
     },
     {
-      link: "/about",
+      link: getLocaleLink("/about"),
       label: t('about'),
       startIcon: <FaInfoCircle />
     },
     {
-      link: "/faq",
+      link: getLocaleLink("/faq"),
       label: t('faq'),
       startIcon: <FaQuestionCircle />
     },
