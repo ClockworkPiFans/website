@@ -1,3 +1,4 @@
+import customColors from '@/configs/customColors';
 import { ActionIcon, Menu } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +19,7 @@ export default function SwitchLanguage() {
     <Menu position='bottom' offset={5}>
       <Menu.Target>
         <ActionIcon>
-          <HiLanguage size={24} color='#595757' />
+          <HiLanguage size={24} color={customColors.default} />
         </ActionIcon>
       </Menu.Target>
       <Menu.Dropdown>
