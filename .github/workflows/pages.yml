@@ -5,7 +5,6 @@ name: GitHub Pages deploy
 
 on:
   push:
-  pull_request:
     branches: [main]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
