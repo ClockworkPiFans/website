@@ -135,7 +135,7 @@ export default function HeaderMenu({ links, extraElements }: HeaderSearchProps) 
     <Header height={74}>
       <Container style={{ maxWidth: "90%" }}>
         <div className={classes.inner}>
-          <UnstyledButton onClick={() => router.push('/')}>
+          <UnstyledButton onClick={() => router.push('/' + router.query.locale)}>
             <Image
               src="/logo.svg"
               alt="Logo"
