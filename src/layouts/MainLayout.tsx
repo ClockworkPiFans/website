@@ -14,6 +14,7 @@ import { MdSmartScreen } from 'react-icons/md';
 import SwitchLanguage from '@/components/SwitchLanguage';
 import { ReactElement } from 'react';
 import { useRouter } from 'next/router';
+import customColors from '@/configs/customColors';
 
 interface MainLayoutProps {
   children: ReactElement;
@@ -74,7 +75,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
           <SwitchLanguage key='language' />,
           <IconButton
             key='github'
-            icon={<FaGithub size={24} color='#595757' />}
+            icon={<FaGithub size={24} color={customColors.default} />}
             onClick={() => window.open('https://github.com/ClockworkPiFans', '_blank')} />
         ]} />
       {children}

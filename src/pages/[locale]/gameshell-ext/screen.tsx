@@ -3,13 +3,14 @@ import Head from 'next/head';
 import { ReactElement } from 'react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Developing from '@/components/Developing';
 import i18nextConfig from '@/../next-i18next.config';
 import { getI18nPaths } from '@/../getI18nPaths';
+import { Box, Button, Card, Container, Group, Image, List, Space, Stack, Text } from '@mantine/core';
+import customColors from '@/configs/customColors';
 
 export default function Screen() {
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('gameshell-ext');
 
   return (
     <>
@@ -19,7 +20,41 @@ export default function Screen() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Developing />
+      <Container>
+        <Group>
+          <Image src='/images/screen_showcase.jpg' />
+          <Box px={50} py={15}>
+            <Group spacing={50}>
+              <Box>
+                <Text color={customColors.default}>
+                  <h1>{t('screen-description-title')}</h1>
+                  <List size='xl'>
+                    <List.Item>{t('screen-description-1')}</List.Item>
+                    <List.Item>{t('screen-description-2')}</List.Item>
+                    <List.Item>{t('screen-description-3')}</List.Item>
+                    <List.Item>{t('screen-description-4')}</List.Item>
+                  </List>
+                </Text>
+                <Space h={30} />
+                {/* TODO handle onClick event, navigate to manual. */}
+                <Button fullWidth>{t('screen-more')}</Button>
+              </Box>
+              <Card>
+                <Card.Section>
+                  {/* TODO Add user experience description. */}
+                </Card.Section>
+              </Card>
+            </Group>
+          </Box>
+        </Group>
+      </Container>
+      <Box px={30} py={30}>
+        <Group spacing={50} align="flex-start">
+
+
+        </Group>
+      </Box>
+
     </>
   )
 }
@@ -41,7 +76,7 @@ export async function getStaticProps(context: { params: { locale: string } }) {
 
   return {
     props: {
-      ...(await serverSideTranslations(context.params.locale, ['common'], i18nextConfig)),
+      ...(await serverSideTranslations(context.params.locale, ['gameshell-ext', 'common'], i18nextConfig)),
     },
   }
 }
