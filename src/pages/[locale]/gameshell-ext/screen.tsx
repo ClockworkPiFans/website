@@ -22,39 +22,31 @@ export default function Screen() {
       </Head>
       <Container>
         <Group>
-          <Image src='/images/screen_showcase.jpg' />
-          <Box px={50} py={15}>
-            <Group spacing={50}>
-              <Box>
-                <Text color={customColors.default}>
-                  <h1>{t('screen-description-title')}</h1>
-                  <List size='xl'>
-                    <List.Item>{t('screen-description-1')}</List.Item>
-                    <List.Item>{t('screen-description-2')}</List.Item>
-                    <List.Item>{t('screen-description-3')}</List.Item>
-                    <List.Item>{t('screen-description-4')}</List.Item>
-                  </List>
-                </Text>
-                <Space h={30} />
+          <Card shadow='sm' radius='md' withBorder>
+            <Card.Section>
+              <Image src='/images/screen_showcase.jpg' />
+            </Card.Section>
+            <Box px={50} py={15}>
+              <Group spacing={50}>
+                <Box>
+                  <Text color={customColors.default}>
+                    <h1>{t('screen-description-title')}</h1>
+                    <List size='xl'>
+                      <List.Item>{t('screen-description-1')}</List.Item>
+                      <List.Item>{t('screen-description-2')}</List.Item>
+                      <List.Item>{t('screen-description-3')}</List.Item>
+                      <List.Item>{t('screen-description-4')}</List.Item>
+                    </List>
+                  </Text>
+                </Box>
                 {/* TODO handle onClick event, navigate to manual. */}
                 <Button fullWidth>{t('screen-more')}</Button>
-              </Box>
-              <Card>
-                <Card.Section>
-                  {/* TODO Add user experience description. */}
-                </Card.Section>
-              </Card>
-            </Group>
-          </Box>
+              </Group>
+            </Box>
+          </Card>
         </Group>
+        <Space h={30}/>
       </Container>
-      <Box px={30} py={30}>
-        <Group spacing={50} align="flex-start">
-
-
-        </Group>
-      </Box>
-
     </>
   )
 }
