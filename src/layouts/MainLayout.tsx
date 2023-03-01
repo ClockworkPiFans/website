@@ -15,6 +15,7 @@ import SwitchLanguage from '@/components/SwitchLanguage';
 import { ReactElement } from 'react';
 import { useRouter } from 'next/router';
 import customColors from '@/configs/customColors';
+import { getExternalLocaleLink, getLocaleLink } from '@/lib/localeUrl';
 
 interface MainLayoutProps {
   children: ReactElement;
@@ -24,45 +25,49 @@ export default function MainLayout({ children }: MainLayoutProps) {
   const { t } = useTranslation();
   const router = useRouter();
 
-  function getLocaleLink(originalLink:string): string {
-    return `/${router.query.locale}${originalLink}`;
+  function getLocaleLinkWrapper(originalLink: string) {
+    return getLocaleLink(originalLink, router.query.locale as string);
+  }
+
+  function getExternalLocaleLinkWrapper(originalLink: string) {
+    return getExternalLocaleLink(originalLink, router.query.locale as string);
   }
 
   const defaultLinks = [
     {
-      link: getLocaleLink("/"),
+      link: getLocaleLinkWrapper("/"),
       label: t('home'),
       startIcon: <FaHome />
     },
     {
-      link: getLocaleLink("/gameshell-ext"),
+      link: getLocaleLinkWrapper("/gameshell-ext"),
       label: t('gameshell-ext'),
       startIcon: <FaGamepad />,
       links: [
         {
-          link: getLocaleLink("/gameshell-ext/screen"),
+          link: getLocaleLinkWrapper("/gameshell-ext/screen"),
           label: t('screen'),
           startIcon: <MdSmartScreen />
         },
         {
-          link: getLocaleLink("/gameshell-ext/joypad"),
+          link: getLocaleLinkWrapper("/gameshell-ext/joypad"),
           label: t('joypad'),
           startIcon: <BsJoystick />
         }
       ]
     },
     {
-      link: getLocaleLink("/manual"),
+      link: getExternalLocaleLinkWrapper("https://manual.clockworkpi-fans.com"),
       label: t('manual'),
       startIcon: <FaBook />
     },
     {
-      link: getLocaleLink("/about"),
+      link: getLocaleLinkWrapper("/about"),
       label: t('about'),
       startIcon: <FaInfoCircle />
     },
     {
-      link: getLocaleLink("/faq"),
+      link: getLocaleLinkWrapper("/faq"),
       label: t('faq'),
       startIcon: <FaQuestionCircle />
     },
