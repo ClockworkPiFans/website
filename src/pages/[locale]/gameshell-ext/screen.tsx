@@ -7,10 +7,18 @@ import i18nextConfig from '@/../next-i18next.config';
 import { getI18nPaths } from '@/../getI18nPaths';
 import { Box, Button, Card, Container, Group, Image, List, Space, Stack, Text } from '@mantine/core';
 import customColors from '@/configs/customColors';
+import { getExternalLocaleLink } from '@/lib/localeUrl';
+import { useRouter } from 'next/router';
 
 export default function Screen() {
 
   const { t } = useTranslation('gameshell-ext');
+  const router = useRouter();
+
+  function onMoreInfoButtonClick() {
+    window.open(getExternalLocaleLink('https://manual.clockworkpi-fans.com', router.query.locale as string) +
+      '/docs/gameshell/screen', '_blank');
+  }
 
   return (
     <>
@@ -39,13 +47,12 @@ export default function Screen() {
                     </List>
                   </Text>
                 </Box>
-                {/* TODO handle onClick event, navigate to manual. */}
-                <Button fullWidth>{t('screen-more')}</Button>
+                <Button onClick={onMoreInfoButtonClick} fullWidth>{t('screen-more')}</Button>
               </Group>
             </Box>
           </Card>
         </Group>
-        <Space h={30}/>
+        <Space h={30} />
       </Container>
     </>
   )
