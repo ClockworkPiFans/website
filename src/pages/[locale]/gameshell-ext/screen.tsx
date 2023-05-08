@@ -17,7 +17,7 @@ export default function Screen() {
 
   function onMoreInfoButtonClick() {
     window.open(getExternalLocaleLink('https://manual.clockworkpi-fans.com', router.query.locale as string) +
-      '/docs/gameshell/screen', '_blank');
+      '/docs/gameshell-ext/screen', '_blank');
   }
 
   return (
