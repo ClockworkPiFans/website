@@ -78,7 +78,7 @@ export default function HeaderMenu({ links, extraElements }: HeaderSearchProps) 
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
 
-  const onLinkClick = (event: any, link: string, external: boolean): void => {
+  const onLinkClick = (event: any, link: string, external: boolean | undefined): void => {
     event.preventDefault();
     if (external && external === true) {
       window.open(link, '_blank');
