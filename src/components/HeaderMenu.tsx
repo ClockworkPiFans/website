@@ -62,10 +62,12 @@ interface HeaderSearchProps {
     link: string;
     label: string;
     startIcon?: ReactElement;
+    external: boolean; // external 现在是必需的属性
     links?: {
       link: string;
       label: string;
       startIcon?: ReactElement;
+      external: boolean; // 子链接的 external 也必须
     }[]
   }[];
   extraElements?: ReactElement[];
@@ -76,14 +78,18 @@ export default function HeaderMenu({ links, extraElements }: HeaderSearchProps) 
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
 
-  const onLinkClick = (event: any, link: string): void => {
+  const onLinkClick = (event: React.MouseEvent<HTMLAnchorElement>, link: string, external: boolean): void => {
     event.preventDefault();
-    router.push(link);;
+    if (external) {
+      window.open(link, '_blank'); // 使用 window.open 打开外部链接
+    } else {
+      router.push(link);
+    }
   };
 
   const items = links.map((link) => {
     const menuItems = link.links?.map((item) => (
-      <Menu.Item key={item.link} onClick={() => router.push(item.link)}>
+      <Menu.Item key={item.link} onClick={(event) => onLinkClick(event, item.link, item.external)}>
         <Group spacing={6}>
           {item.startIcon}
           {item.label}
@@ -98,7 +104,7 @@ export default function HeaderMenu({ links, extraElements }: HeaderSearchProps) 
             <a
               href={link.link}
               className={classes.link}
-              onClick={(event) => onLinkClick(event, link.link)}
+              onClick={(event) => onLinkClick(event, link.link, link.external)}
             >
               <Center>
                 <Group spacing={6}>
@@ -114,14 +120,12 @@ export default function HeaderMenu({ links, extraElements }: HeaderSearchProps) 
       );
     }
 
-
-
     return (
       <a
         key={link.label}
         href={link.link}
         className={classes.link}
-        onClick={(event) => onLinkClick(event, link.link)}
+        onClick={(event) => onLinkClick(event, link.link, link.external)}
       >
         <Group spacing={6}>
           {link.startIcon}
