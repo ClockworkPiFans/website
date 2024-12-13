@@ -59,7 +59,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
     {
       link: "https://clockworkpifans.github.io/manual",
       label: t('manual'),
-      startIcon: <FaBook />
+      startIcon: <FaBook />,
+      external: true
     },
     {
       link: getLocaleLinkWrapper("/about"),
