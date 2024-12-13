@@ -137,7 +137,7 @@ export default function HeaderMenu({ links, extraElements }: HeaderSearchProps) 
         <div className={classes.inner}>
           <UnstyledButton onClick={() => router.push('/' + router.query.locale)}>
             <Image
-              src="/logo.svg"
+              src="/website/logo.svg"
               alt="Logo"
               width={220}
               height={48}
