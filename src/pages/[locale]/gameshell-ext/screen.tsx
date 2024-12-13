@@ -32,7 +32,7 @@ export default function Screen() {
         <Group>
           <Card shadow='sm' radius='md' withBorder>
             <Card.Section>
-              <Image src='/images/screen_showcase.jpg' />
+              <Image src='/website/images/screen_showcase.jpg' />
             </Card.Section>
             <Box px={50} py={15}>
               <Group spacing={50}>
