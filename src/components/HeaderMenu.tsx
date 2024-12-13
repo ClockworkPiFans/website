@@ -62,12 +62,12 @@ interface HeaderSearchProps {
     link: string;
     label: string;
     startIcon?: ReactElement;
-    external: boolean;
+    external?: boolean;
     links?: {
       link: string;
       label: string;
       startIcon?: ReactElement;
-      external: boolean;
+      external?: boolean;
     }[]
   }[];
   extraElements?: ReactElement[];
@@ -80,7 +80,7 @@ export default function HeaderMenu({ links, extraElements }: HeaderSearchProps) 
 
   const onLinkClick = (event: any, link: string, external: boolean): void => {
     event.preventDefault();
-    if (external) {
+    if (external && external === true) {
       window.open(link, '_blank');
     } else {
       router.push(link);
