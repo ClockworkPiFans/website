@@ -62,12 +62,12 @@ interface HeaderSearchProps {
     link: string;
     label: string;
     startIcon?: ReactElement;
-    external: boolean; // external 现在是必需的属性
+    external: boolean;
     links?: {
       link: string;
       label: string;
       startIcon?: ReactElement;
-      external: boolean; // 子链接的 external 也必须
+      external: boolean;
     }[]
   }[];
   extraElements?: ReactElement[];
@@ -78,10 +78,10 @@ export default function HeaderMenu({ links, extraElements }: HeaderSearchProps) 
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
 
-  const onLinkClick = (event: React.MouseEvent<HTMLAnchorElement>, link: string, external: boolean): void => {
+  const onLinkClick = (event: any, link: string, external: boolean): void => {
     event.preventDefault();
     if (external) {
-      window.open(link, '_blank'); // 使用 window.open 打开外部链接
+      window.open(link, '_blank');
     } else {
       router.push(link);
     }
